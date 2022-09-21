@@ -1,0 +1,35 @@
+base:
+  project: medical_insurance
+  random_state: 42
+  target_col: charges
+
+source_data:
+  s3: source_data/medical_insurance.csv
+
+load_data:
+  raw_dataset_csv: data/processed/medical_insurance.csv
+
+split_data:
+  train_path: data/processed/train_medical_insurance.csv
+  test_path: data/processed/test_medical_insurance.csv
+  test_size: 0.2
+
+estimators:
+  ElasticNet:
+    params:
+      alpha: 0.9
+      l1_ration: 0.4
+
+model_dir: models
+
+reports: 
+  params: reports/params.json
+  scores: reports/scores.json
+
+metrics:
+  - reports/scores.json
+    cache:false
+  - reports/params.json
+    cache:false
+
+web_model_directory : prediction_service/model/model.joblib
