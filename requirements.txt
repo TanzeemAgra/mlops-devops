@@ -16,3 +16,6 @@ seaborn
 matplotlib
 distutils-pytest
 config
+dvc
+tox
+pytest
