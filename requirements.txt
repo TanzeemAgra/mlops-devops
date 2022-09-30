@@ -20,3 +20,4 @@ dvc
 tox
 pytest
 mlflow
+gunicorn
