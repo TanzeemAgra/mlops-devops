@@ -39,4 +39,4 @@ mlflow_config:
   experiment_name: ElasticNet Regression
   run_name: mlops
   registered_model_name: ElasticNetMedicalModel
-  remote_server_uri: http://localhost:5000
+  remote_server_uri: http://127.0.0.1:5000
