@@ -1,0 +1,50 @@
+schema: '2.0'
+stages:
+  load_data:
+    cmd: python src/load_data.py --config=params.yaml
+    deps:
+    - path: source_data/medical_insurance.csv
+      md5: 0901b434e74ea2297dc3aa943d12a4f9
+      size: 38036
+    - path: src/get_data.py
+      md5: 2e4101066996d9693537362a94b91162
+      size: 683
+    - path: src/load_data.py
+      md5: 6c1f20164ebe13c34cff13b18390ad17
+      size: 669
+    outs:
+    - path: data/raw/medical_insurance.csv
+      md5: 0901b434e74ea2297dc3aa943d12a4f9
+      size: 38036
+  split_data:
+    cmd: python src/split_data.py --config=params.yaml
+    deps:
+    - path: data/raw/medical_insurance.csv
+      md5: 0901b434e74ea2297dc3aa943d12a4f9
+      size: 38036
+    - path: src/split_data.py
+      md5: cc8d6434e6879bdb6c8ef1b6d8967cd6
+      size: 1063
+    outs:
+    - path: data/processed/test_medical_insurance.csv
+      md5: daa29a3c336ca647b82532c2d6286385
+      size: 7642
+    - path: data/processed/train_medical_insurance.csv
+      md5: 640b81740af906b0621c1862be5b5085
+      size: 30438
+  train_and_evaluate:
+    cmd: python src/train_and_evaluate.py --config=params.yaml
+    deps:
+    - path: data/processed/test_medical_insurance.csv
+      md5: daa29a3c336ca647b82532c2d6286385
+      size: 7642
+    - path: data/processed/train_medical_insurance.csv
+      md5: 640b81740af906b0621c1862be5b5085
+      size: 30438
+    - path: src/train_and_evaluate.py
+      md5: dacefd6a21772c1c3790815db3692966
+      size: 2752
+    params:
+      params.yaml:
+        estimators.ElasticNet.params.alpha: 0.88
+        estimators.ElasticNet.params.l1_ratio: 0.89

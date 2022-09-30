@@ -1,13 +1,13 @@
 stages:
   load_data:
     cmd: python src/load_data.py --config=params.yaml
-  deps:
-  - src/get_data.py
-  - src/load_data.py
-  - source_data/medical_insurance.csv
+    deps:
+    - src/get_data.py
+    - src/load_data.py
+    - source_data/medical_insurance.csv
 
-  outs:
-  - data/raw/medical_insurance.csv
+    outs:
+    - data/raw/medical_insurance.csv
 
   split_data:
     cmd: python src/split_data.py --config=params.yaml
@@ -38,11 +38,12 @@ stages:
 
     # outs:
     # - models/model.joblib
-# log_production_model:
-#   cmd: python src/log_production_model.py --config=params.yaml
 
-#   deps:
-#     - src/log_production_model.py
+log_production_model:
+  cmd: python src/log_production_model.py --config=params.yaml
+
+  deps:
+    - src/log_production_model.py
 
 
 

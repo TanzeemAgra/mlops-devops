@@ -21,3 +21,5 @@ tox
 pytest
 mlflow
 gunicorn
+pytest
+awsebcli
