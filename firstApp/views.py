@@ -1,8 +1,6 @@
 from django.shortcuts import render
-from turtle import pd
-from django.shortcuts import render
 import joblib
-import prediction_service
+#import prediction_service
 import yaml
 import os
 import json
